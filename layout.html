@@ -1,0 +1,393 @@
+<!-- <!doctype html> -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    
+    <title>First Test Manager</title>
+    <style>
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+    *{
+      /*font-family: 'PT Sans', sans-serif; */
+      /*font-family: '나눔고딕';*/
+      /*font-family: 'Pacifico', cursive;*/
+      font-family: 'timesnewRomans';
+
+   }
+  /* lang(ko) {
+         font-size:10px;
+        font-family: 'Nanum Brush Script', serif;
+   }*/
+
+    [lang=ko] {font-family: 'Nanum Brush Script', serif;} /*이거 안됭*/
+
+
+      #jb-container {
+        width: 1280px; 
+        /*overflow: auto;    */ /*widht:1280 한거 때문에 scroll 안생겨*/
+        /*position: absolute;*/
+        /*width: auto;*/
+        /*margin: 0px auto;*/
+        /*padding: 0px 20px 20px 20px;*/
+        /*border: 1px solid #bcbcbc;*/
+        /*-moz-box-sizing: border-box; /* Firefox  */
+                    /*-webkit-box-sizing: border-box; /* Safari */
+                    /*box-sizing: border-box; /* CSS3 Standard */
+                     position: fixed;
+                      top: 0; left: 0;
+                    /*padding:0px;margin:0px;*/
+                    width:100%;
+                    height:100%;
+                    background-color: #F2F2F2;
+      }
+      #jb-header {
+         position: relative;
+        /*padding: 20px;*/
+        /*margin-bottom: 20px;*/
+        height: 65px;
+        /*background-color:  #2EB7EE;*/
+        /*background-color: #F5D0A9;*/
+        background-color: #F7BE81;
+        border: 1px solid #bcbcbc;
+      }
+      #main-logo {
+         /*position: relative;*/
+         margin-left: 30px;
+         display: inline;
+        left: 50px;
+      }
+     #logo-text{
+      position: relative;
+      font-family: 'Pacifico', cursive;
+      display: inline;
+         left: 30px;
+        font-size: 40px;
+        color: white;
+        top: 0px; 
+      }
+      #header-button{
+        /*float: right;*/
+        position: absolute;
+        vertical-align: baseline;
+        top: 40px;
+        right: 10px;
+      }
+      #jb-sidebar-left {
+         vertical-align: top;          /*parent 에 위에 블록 맞춰서 맞춤*/
+         float: clear;
+          position: relative;       
+          display: inline-block;       
+        width: 200px;
+        /*padding-top: 10px;*/
+        margin-top: 10px;
+        padding-bottom: 30px; /*padding위 아래 left content right 맞춰야지 칸 맞음*/
+        /*float: left;*/
+         /*height: 300px;*/
+         height: 70%;            /*height 70퍼로 세개 맞춤*/
+        border: 1px solid #bcbcbc;
+        background-color: white;
+      }
+
+      #sidebar-left-inout{
+         height: 20px;
+          text-align: right;
+          background-color: #D8D8D8;
+      }
+      #leftmenu-img{
+         width: 15px;
+         height: 15px;
+      }
+
+      #jb-sidebar-left>span{
+         display: block;
+         background-color: #909090;
+         font-size: 20px;
+         /*text-align: center;*/
+      }
+
+      #sidebar-left-close{
+         display: none;
+         float: clear;
+          position: relative;
+        width: 20px;
+         height: 70%;
+         padding-top: 10px;
+         padding-bottom: 30px;
+        border: 1px solid #bcbcbc;
+        background-color: white;
+      }
+
+
+      ul.sidebar-left-project-list{
+       /*list-style-type: none;*/
+       /*list-style-image: url('home.png');*/
+       list-style-image: url('file.jpg');
+        padding: 0;
+        /*margin: 0px 0px 30px 10px;*/
+        margin-left: 30px;
+        }
+
+      /*li.project{*/
+      /*background: url(‘home.png’) left top;*/
+      /*background-repeat: no-repeat;*/
+      /*height: 54px;*/
+      /*padding-left: 44px;*/
+      /*padding-top: 3px;*/
+      /*}*/
+
+      ul#left-inside-projects{
+         list-style: circle;
+      }
+
+      ul#left-testcase, ul#left-defect, ul#left-report{
+         /*list-style-image: url("document.png");*/
+         list-style: circle;
+      }
+
+
+      a{text-decoration:none;} 
+      a:visited {text-decoration: none; color: #333333;}
+      a:active {text-decoration: none; color: #333333;}
+      a:hover {
+         text-decoration: underline; color: red;
+         text-decoration: none; color: #333333;
+         }
+      #jb-content {
+         vertical-align: top;
+         position: relative;
+          display: inline-block;
+        width: 780px;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+          /*height: 300px;*/
+          height: 70%;
+          background-color: white;
+      }
+
+      #jb-content > #jb-content-maintab{
+         background-color: #bcbcbc;
+         height: 40px;        
+      }
+
+      .tab-content{display: none;}
+
+      input:nth-of-type(1){display: none;}
+      /*.tab-content:nth-of-type(1){display: none;}*/
+      input:nth-of-type(1):checked ~div.tab-content:nth-of-type(1){display: block;}
+      /*input:nth-of-type(1):checked {<?$a = 1;?>}*/
+
+
+      input:nth-of-type(2){display: none;}
+      /*.tab-content:nth-of-type(2){display: none;}*/
+      input:nth-of-type(2):checked ~div.tab-content:nth-of-type(2){display: block;}
+      /*input:nth-of-type(2):checked {<?$a = 2;?>}*/
+
+      input:nth-of-type(3){display: none;}
+      /*.tab-content:nth-of-type(3){display: none;}*/
+      input:nth-of-type(3):checked ~div.tab-content:nth-of-type(3){display: block;}
+      /*input:nth-of-type(3):checked{<?$a = 3;)?>}*/
+      
+      /*.tab-content:nth-of-type(<?$a?>){display: block;}*/
+
+      /*<? function tabChecked($a){
+         .tab-content:nth-of-type($a){display: block};
+         return $a
+      }
+      ?>*/
+
+      section.tab-title{overflow: hidden;}
+      section.tab-title>label{
+         display:block;
+         float:left;
+         width: 140px;
+         height: 30px;
+         line-height: 30px;
+         text-align: center;
+
+          border-radius:3px 3px 0 0;
+          background:#eee;
+          color:#777;
+          border:1px solid #ccc;
+         
+      }
+
+      #jb-sidebar-right {
+         vertical-align: top;
+         position: relative;
+         display: inline-block;
+        width: 150px;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+        /*height: 300px;*/
+        height: 70%;
+        background-color: white;
+      }
+      #jb-footer {
+         /*position: absolute;
+        clear: both;
+        /*padding: 20px;*/
+        border: 1px solid #bcbcbc;
+        background-color: white;
+      }
+      
+
+     /* #background { position: fixed; top: 0; left: 0; 
+      width:100%;
+      width: 1300px;
+                    height:100%;}*/
+ 
+.backgroundwidth { width: 100%; }
+ 
+.backgroundheight { height: 100%; }
+
+    </style>
+  </head>
+  <body>
+    <div id="jb-container">
+    <!-- <div id="background"> -->
+      <div id="jb-header">
+        <img id ="main-logo" border="0" src="logo.png" width="60" height="60"/>
+        <span id="logo-text">First Test Manager</span>
+        <div id="header-button">
+        <button>mypage</button>
+        <button>logout</button>
+        </div>
+      </div>
+      <div id="jb-sidebar-left">
+         <div id="sidebar-left-inout"><img id="leftmenu-img" src="bars.png" onclick="openleftMenu()" /></div>
+        <span>Project</span>
+        <ul class="sidebar-left-project-list">
+          <li class="project"><a href="#" onclick="openlist('left-inside-projects')">핸드폰 테스트</a>
+          <ul id = "left-inside-projects" style="display: none;">
+          <!-- <ul id="left-testcase"> -->
+          <li a href="#" onclick="openlist('left-testcase')">testcase</a></li>
+          <ul id="left-testcase" style="display: block;">
+          <li>a test</li>
+          <li>b test</li>
+          </ul>
+          <li a href="#" onclick="openlist('left-defect')">Defect</a></li>
+          <ul id="left-defect">
+          <li>defect1</li>
+          </ul>
+           <li a href="#" onclick="openlist('left-report')">Report</a></li>
+          <ul id="left-report">
+          <li>report1</li>
+          </ul> </ul>
+          </li>
+         
+          <li class="project">Ipsum</li>
+          <li class="project">Dolor</li>
+        </ul>
+
+
+      </div>
+
+      <div id="sidebar-left-close">
+          <div id="sidebar-left-inout"><img src="bars.png" onclick="openleftMenu()" /></div>
+      </div>
+
+
+      <div id="jb-content">
+      <!-- <div id="jb-content-maintab"> -->
+      <input id = "project-dashboard" type="radio" name="tab" checked="checked" />
+      <input id = "defect-dashboard" type ="radio" name="tab"/>
+      <input id = "third-label" type = "radio" name="tab"/>
+      <section class = "tab-title">
+         <label for= "project-dashboard">Project Dashboard</label>
+         <label for= "defect-dashboard">Defect Dashboard</label>
+         <label for= "third-label" style="display: none;">Defect</label>
+         </section>
+      <!-- </div> -->
+      <div class = "tab-content">
+        1
+        </div>
+        <div class = "tab-content">
+        2
+        </div>
+        <div class = "tab-content">
+        3
+        </div>
+
+      </div>
+      <div id="jb-sidebar-right">
+        <h2>Sidebar</h2>
+        <ul>
+          <li>Lorem</li>
+          <li>Ipsum</li>
+          <li>Dolor</li>
+        </ul>
+      </div>
+      <div id="jb-footer">
+        <p>Copyright</p>
+      </div>
+    </div>
+  </body>
+
+
+        <!-- left list 누르면 열리게하는 함수-->
+<script type="text/javascript">
+function openlist(idMyDiv){
+     var objDiv = document.getElementById(idMyDiv);
+
+     if(objDiv.style.display=="block"){ objDiv.style.display = "none"; }
+     else{ objDiv.style.display = "block"; }
+
+     changeMaintab(idMyDiv);
+}
+
+function openleftMenu() {
+   var objDiv = document.getElementById('jb-sidebar-left');
+
+    if(objDiv.style.display=="inline-block"){
+     objDiv.style.display = "none";   
+    document.getElementById('sidebar-left-close').style.display = "inline-block";
+ 
+     document.getElementById('jb-content').style.width = "980px";
+ }
+     else{ 
+      objDiv.style.display = "inline-block";
+     document.getElementById('sidebar-left-close').style.display = "none";
+     document.getElementById('jb-content').style.width = "780px";
+  }
+}
+
+function changeMaintab(idMyDiv){
+   var labels = document.getElementsByTagName('LABEL');
+
+   if(idMyDiv == "left-testcase"){
+      labels[2].style.display ="block";      
+      labels[2].textContent = "TestCase";}
+
+   if(idMyDiv == "left-defect"){
+      labels[2].style.display ="block";   
+      labels[2].textContent = "Defect";}
+   
+   if(idMyDiv == "left-report"){
+      labels[2].style.display ="block";   
+      labels[2].textContent = "Report";}
+
+   }
+
+$(window).load(function() {    
+    var theWindow        = $(window),
+        $bg              = $("#bg"),
+        aspectRatio      = $bg.width() / $bg.height();
+ 
+    function resizeBg() {
+        if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
+            $bg
+                .removeClass()
+                .addClass('backgroundheight');
+ 
+        } else {
+            $bg
+                .removeClass()
+                .addClass('backgroundwidth');
+        }
+    }
+    theWindow.resize(resizeBg).trigger("resize");
+});
+</script>
+</html>
