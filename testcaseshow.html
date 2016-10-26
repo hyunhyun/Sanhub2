@@ -1,0 +1,38 @@
+<?
+	include("function.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Test Case Show</title>
+	<link rel="stylesheet" type="text/css" href="ftm.css">
+</head>
+<body>
+	<div class="main-wrapper">
+		<div class="left-wrapper">
+			<form action="testcasemod.html", method="post">
+				<div class="upper-menu">
+					<ul>
+						<li class="upper-menu-item"><a href="testcaseadd.html">테스트케이스 추가</a></li>
+						<li class="upper-menu-item"><a href="testcasemod.html"><input type="submit" value="수정" style="border : 0; background-color : #E6E6E6; font-size : 16px; width : 150px;"></a></li>
+						<li class="upper-menu-item"><a href="#">가져오기</a></li>
+						<li class="upper-menu-item"><a href="#">내보내기</a></li>
+					</ul>
+				</div>
+				<div class="lower-menu">
+					<ul>
+						<li class="lower-menu-item">&nbsp;&nbsp;&nbsp;</li>
+						<li class="lower-menu-item">제목</li>
+						<li class="lower-menu-item">아이디</li>
+						<li class="lower-menu-item">담당자</li>
+						<li class="lower-menu-item">작성일</li>
+					</ul>
+				</div>
+				<?=show_contents()?>	
+			</form>	
+		</div>
+		<?=show_testcase($_REQUEST['title'])?>
+	</div>
+</body>
+</html> 
