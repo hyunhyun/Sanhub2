@@ -1,7 +1,7 @@
 <?
 	include("function.php");
 
-	if(insert_testcase($_POST))
+	if(add_defect($_POST))
 	{
 		header("Location: defect.html");
 	}
