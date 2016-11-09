@@ -1,0 +1,313 @@
+<!-- <!doctype html> -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    
+    <title>First Test Manager</title>
+    <style>
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+    *{
+      font-family: 'timesnewRomans';
+   }
+
+      #jb-container {
+        width: 1300px; 
+        position: fixed;
+        top: 0; left: 0;
+        width:100%;
+        height:100%;
+        background-color: #F2F2F2;
+      }
+      #jb-header {
+         position: relative;
+        height: 65px;
+        background-color: #F7BE81;
+        border: 1px solid #bcbcbc;
+      }
+      #main-logo {
+         margin-left: 30px;
+         display: inline;
+        left: 50px;
+      }
+     #logo-text{
+      position: relative;
+      font-family: 'Pacifico', cursive;
+      display: inline;
+         left: 30px;
+        font-size: 40px;
+        color: white;
+        top: 0px; 
+      }
+      #header-button{
+        position: absolute;
+        vertical-align: baseline;
+        top: 40px;
+        right: 10px;
+      }
+      #jb-sidebar-left {
+         vertical-align: top;          /*parent 에 위에 블록 맞춰서 맞춤*/
+         float: clear;
+          position: relative;       
+          display: inline-block;       
+        width: 14%;
+        margin-top: 10px;
+        padding-bottom: 30px; /*padding위 아래 left content right 맞춰야지 칸 맞음*/
+         height: 100%;            /*height 70퍼로 세개 맞춤*/
+        border: 1px solid #bcbcbc;
+        background-color: white;
+      }
+
+      #sidebar-left-inout{
+         height: 20px;
+          text-align: right;
+          background-color: #D8D8D8;
+      }
+      #leftmenu-img{
+         width: 15px;
+         height: 15px;
+      }
+
+      #jb-sidebar-left>span{
+         display: block;
+         background-color: #909090;
+         font-size: 20px;
+         /*text-align: center;*/
+      }
+
+      #sidebar-left-close{
+         display: none;
+         float: clear;
+         position: relative;
+        width: 2%;
+         height: 100%;
+         padding-top: 10px;
+         padding-bottom: 30px;
+        border: 1px solid #bcbcbc;
+        background-color: white;
+      }
+
+
+      ul.sidebar-left-project-list{
+       list-style-image: url('file.jpg');
+        padding: 0;
+        margin-left: 30px;
+        }
+
+      ul#left-inside-projects{
+         list-style: circle;
+      }
+
+      ul#left-testcase, ul#left-defect, ul#left-report{
+         list-style: circle;
+      }
+
+
+      a{text-decoration:none;} 
+      a:visited {text-decoration: none; color: #333333;}
+      a:active {text-decoration: none; color: #333333;}
+      a:hover {
+         text-decoration: underline; color: red;
+         text-decoration: none; color: #333333;
+         }
+      #jb-content {
+         vertical-align: top;
+         position: relative;
+        display: inline-block;
+        width: 83%; /*width 1050px에서 85% 로*/
+        padding-top : 7px;
+        border: 1px solid #bcbcbc;
+          height: 100%;
+          background-color: white;
+      }
+
+      #jb-content > #jb-content-maintab{
+         background-color: #bcbcbc;
+         height: 40px;        
+      }
+
+      .tab-content{display: none;}
+
+      input:nth-of-type(1){display: none;}
+      input:nth-of-type(1):checked ~div.tab-content:nth-of-type(1){display: block;}
+
+      input:nth-of-type(2){display: none;}
+      input:nth-of-type(2):checked ~div.tab-content:nth-of-type(2){display: block;}
+
+      input:nth-of-type(3){display: none;}
+      input:nth-of-type(3):checked ~div.tab-content:nth-of-type(3){display: block;}
+    
+      section.tab-title{overflow: hidden;}
+      section.tab-title>label{
+         display:block;
+         float:left;
+         width: 140px;
+         height: 30px;
+         line-height: 30px;
+         text-align: center;
+
+          border-radius:3px 3px 0 0;
+          background:#eee;
+          color:#777;
+          border:1px solid #ccc;
+         
+      }
+
+ 
+.backgroundwidth { width: 100%; }
+ 
+.backgroundheight { height: 100%; }
+
+      html, body  /* iframe %단위 height 적용 코드 */
+      {
+        height: 100%;
+        overflow: hidden;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div id="jb-container">
+    <!-- <div id="background"> -->
+      <div id="jb-header">
+        <img id ="main-logo" border="0" src="logo.png" width="60" height="60"/>
+        <span id="logo-text">First Test Manager</span>
+        <div id="header-button">
+        <button>mypage</button>
+        <button>logout</button>
+        </div>
+      </div>
+      <div id="jb-sidebar-left">
+         <div id="sidebar-left-inout"><img id="leftmenu-img" src="bars.png" onclick="openleftMenu()" /></div>
+        <span>Project</span>
+        <ul class="sidebar-left-project-list">
+          <li class="project"><a href="#" onclick="openlist('left-inside-projects')">핸드폰 테스트</a></li>
+          <ul id = "left-inside-projects" style="display: none;">
+          <!-- <ul id="left-testcase"> -->
+          <li a href="#" onclick="openlist('left-testcase')">testcase</a></li>
+          <ul id="left-testcase" style="display: block;">
+          <li>a test</li>
+          <li>b test</li>
+          </ul>
+          <li a href="#" onclick="openlist('left-defect')">Defect</a></li>
+          <ul id="left-defect">
+          <li>defect1</li>
+          </ul>
+           <li a href="#" onclick="openlist('left-report')">Report</a></li>
+          <ul id="left-report">
+          <li>report1</li>
+          </ul> </ul>
+          </li>
+         
+          <li class="project">Ipsum</li>
+          <li class="project">Dolor</li>
+        </ul>
+
+
+      </div>
+
+      <div id="sidebar-left-close">
+          <div id="sidebar-left-inout"><img src="bars.png" onclick="openleftMenu()" /></div>
+      </div>
+
+
+      <div id="jb-content">
+      <!-- <div id="jb-content-maintab"> -->
+      <input id = "project-dashboard" type="radio" name="tab" checked="checked" />
+      <input id = "defect-dashboard" type ="radio" name="tab"/>
+      <input id = "third-label" type = "radio" name="tab"/>
+      <section class = "tab-title">
+         <label for= "project-dashboard">Project Dashboard</label>
+         <label for= "defect-dashboard">Defect Dashboard</label>
+         <label for= "third-label" style="display: none;">Defect</label>
+         </section>
+      <!-- </div> -->
+      <div class = "tab-content">
+         <iframe id= pfr src="projectdash1.html" scrolling="no" style="height:80%;  width: 98%;"></iframe>
+        </div>
+        <div class = "tab-content">
+         <iframe src="defectdash1.html" scrolling="no" style="height:80%;  width: 98%;"></iframe>
+        </div>
+        <div class = "tab-content">
+        <iframe id = "main-iframe" src="defect1.html" scrolling="yes" style="height:98%;  width: 98%;"></iframe>
+        </div>
+
+      </div>
+     
+  </body>
+
+
+        <!-- left list 누르면 열리게하는 함수-->
+<script type="text/javascript">
+function openlist(idMyDiv){
+     var objDiv = document.getElementById(idMyDiv);
+
+     if(objDiv.style.display=="block"){ objDiv.style.display = "none"; }
+     else{ objDiv.style.display = "block"; }
+
+     changeMaintab(idMyDiv);
+}
+
+function openleftMenu() {
+   var objDiv = document.getElementById('jb-sidebar-left');
+
+    if(objDiv.style.display=="inline-block"){
+     objDiv.style.display = "none";   
+    document.getElementById('sidebar-left-close').style.display = "inline-block";
+ 
+     document.getElementById('jb-content').style.width = "95%";
+ }
+     else{ 
+      objDiv.style.display = "inline-block";
+     document.getElementById('sidebar-left-close').style.display = "none";
+     document.getElementById('jb-content').style.width = "83%";
+  }
+}
+
+function changeMaintab(idMyDiv){
+   var labels = document.getElementsByTagName('LABEL');
+
+   if(idMyDiv == "left-testcase"){
+      labels[2].style.display ="block";      
+      labels[2].textContent = "TestCase";
+       changeIframe('testcase.html'); }
+
+   if(idMyDiv == "left-defect"){
+      labels[2].style.display ="block";   
+      labels[2].textContent = "Defect";
+      changeIframe('defect1.html')}
+   
+   if(idMyDiv == "left-report"){
+      labels[2].style.display ="block";   
+      labels[2].textContent = "Report";}
+
+   }
+
+   function changeIframe(url) {
+   var objDiv = document.getElementById('main-iframe');
+   objDiv.src = url;
+
+}
+
+$(window).load(function() {    
+    var theWindow        = $(window),
+        $bg              = $("#bg"),
+        aspectRatio      = $bg.width() / $bg.height();
+ 
+    function resizeBg() {
+        if ( (theWindow.width() / theWindow.height()) < aspectRatio ) { 
+            $bg
+                .removeClass()
+                .addClass('backgroundheight');
+ 
+        } else {
+            $bg
+                .removeClass()
+                .addClass('backgroundwidth');
+        }
+    }
+    theWindow.resize(resizeBg).trigger("resize");
+});
+</script>
+</html>

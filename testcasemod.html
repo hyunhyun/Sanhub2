@@ -1,0 +1,64 @@
+<?
+	include("function.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Test Case Modify</title>
+	<link rel="stylesheet" type="text/css" href="ftm.css">
+</head>
+<body>
+	<div class="main-wrapper">
+		<div class="left-wrapper">
+			<form action="testcasemod.html", method="post">
+				<div class="upper-menu">
+					<ul>
+						<li class="upper-menu-item"><a href="testcaseadd.html">테스트케이스 추가</a></li>
+						<li class="upper-menu-item"><a href="testcasemod.html"><input type="submit" value="수정 / 삭제" style="border : 0; background-color : #E6E6E6; font-size : 16px; width : 150px;"></a></li>
+						<li class="upper-menu-item"><a href="#">가져오기</a></li>
+						<li class="upper-menu-item"><a href="#">내보내기</a></li>
+					</ul>
+				</div>
+				<div class="lower-menu">
+					<ul>
+						<li class="lower-menu-item">&nbsp;&nbsp;&nbsp;</li>
+						<li class="lower-menu-item">제   목</li>
+						<li class="lower-menu-item">아이디</li>
+						<li class="lower-menu-item">담당자</li>
+						<li class="lower-menu-item">기   한</li>
+						<li class="lower-menu-item">실행결과</li>
+						<li class="lower-menu-item">실행일</li>
+					</ul>
+				</div>
+				<?=show_contents()?>	
+			</form>	
+		</div>
+		<div class="right-wrapper">
+			<form action="testcasemod.php" method="post" enctype="multipart/form-data">
+				제   목 : <textarea name="title"><?=$_POST['title']?></textarea><br><br>
+				아이디 : <textarea name="id"></textarea><br><br>
+				담당자 : <textarea name="writer"></textarea><br><br>
+				기   한 : <input name="due" type="date"><br><br>
+				실행결과 : <select name="result">
+						<option value="PASS">PASS</option>
+						<option value="FAIL">FAIL</option>
+						<option value="N/A">N/A</option>
+						<option value="N/T">N/T</option>
+					</select><br><br>
+				실행일 : <input name="date" type="date"></textarea><br><br>
+				사전조건 : <textarea name="antecedentcondition"></textarea><br><br>
+				테스트데이터 : <textarea name="testdata"></textarea><br><br>
+				실행절차 : <textarea name="executionprocedure"></textarea><br><br>
+				예상결과 : <textarea name="expectedresult"></textarea><br><br>
+				비   고 : <textarea name="note"></textarea><br><br>
+				<!--첨부파일 : <input type="file" name="file"><br><br>-->
+				<input type="submit" value="수정" style="width : 70px; height : 25px">&nbsp;&nbsp;
+				<a href=testcasedel.php?title=<?=$_POST['title']?>><input type="button" value="삭제" style="width : 70px; height : 25px"></a>&nbsp;&nbsp;
+				<a href="testcase.html"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
+				<input type="hidden" name="otitle" value=<?=$_POST['title']?>>
+			</form>
+		</div>
+	</div>
+</body>
+</html> 

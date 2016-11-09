@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>HTML</title>
+	<style type="text/css">
+   
+#loginWrapper {
+   margin: 0 auto;
+   width: 1200px;
+}
+
+#loginWrapper #loginForm {
+   margin: 100px auto 200px;
+   width: 400px;
+   border: none;
+}
+
+#loginWrapper #loginForm h1 {
+   margin-bottom: 40px;
+   text-align: center;
+}
+
+#loginWrapper #loginForm .inputBox {
+   padding: 8px 12px;
+   width: 100%;
+   box-sizing: border-box;
+   border: 1px solid #ccc;
+   background-color: white;
+}
+
+#loginWrapper #loginForm input[type="text"], #loginWrapper #loginForm input[type="password"] {
+   width: 100%;
+   font-size: 18px;
+   border: 0;
+}
+
+#loginWrapper #loginForm input[type="submit"] {
+   margin-top: 20px;
+   margin-bottom: 8px;
+   width: 100%;
+   height: 56px;
+   font-size: 20px;
+}
+#loginWrapper #loginForm input[type="button"] {
+   margin-top: 20px;
+   margin-bottom: 8px;
+   width: 100%;
+   height: 56px;
+   font-size: 20px;
+}
+#loginWrapper #loginForm input[type="checkbox"] {
+   margin-right: 5px;
+}
+
+#loginWrapper #loginForm .logset {
+   font-size: 14px;
+}
+
+#loginWrapper hr {
+   margin-top: 30px;
+}
+
+#loginWrapper .logNav {
+   margin-top: 15px;
+   width: 100%;
+   font-size: 0;
+   text-align: center;
+}
+
+#loginWrapper .logNav a {
+   display: inline-block;
+   padding: 0 10px;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   color: #555;
+   border-right: 1px solid #ccc;
+}
+
+#loginWrapper .logNav a:last-child {
+   border-right: none;
+}
+
+</style>
+</head>
+<body>
+<div id="loginWrapper">
+	<form id=loginForm method="post" action=register.php>
+	
+		<h1>회원가입</h1>
+		<p class="inputBox"><input type=text name="name" id="name" placeholder="이름" /></p>
+		<p class="inputBox"><input type=text name="id" id="id" placeholder="아이디" /></p>   
+		<p class="inputBox"><input type=password name="passwd" id="passwd" placeholder="비밀번호" /></p>	
+		<input type=submit value="회원가입"/>
+		<input type=button value="뒤로가기" onclick="location.href='mainpage.html'" />
+	</form>
+</div>	
+</body>
+</html

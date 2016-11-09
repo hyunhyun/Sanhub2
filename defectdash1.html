@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+	<title>Defect</title>
+	<style>
+		* 
+		{
+			margin: 0; 
+			padding: 0;
+		}
+		a 
+		{
+			text-decoration: none; 
+			color: black;
+		}
+		li {list-style: none;}
+		.main-wrapper 
+		{
+			overflow: hidden;
+		}
+		.left-wrapper 
+		{
+			border: 5px solid #E6E6E6; 
+			border-style: ridge; 
+			float: left; 
+			position: absolute; 
+			width: 100%;
+		}
+		.upper-menu 
+		{
+			background-color: #E6E6E6; 
+			margin-bottom: 3px; 
+			border-top: 1px solid #C8C8C8; 
+			border-bottom: 1px solid #C8C8C8; 
+			border-left: 1px solid #C8C8C8; 
+			border-right: 1px solid #C8C8C8; 
+			height: 25px; 
+			overflow: hidden;
+		}
+		.upper-menu-item 
+		{
+			display: block; 
+			height: 25px; 
+			width: 150px; 
+			text-align: center; 
+			line-height: 25px; 
+			border-right: 1px solid #C8C8C8; 
+			border-style: outset; 
+			float: left;
+		}
+		.upper-menu-item:hover 
+		{
+			border-style: inset; 
+			padding-bottom: 10px; 
+			border-radius: 5px;
+		}
+		.lower-menu 
+		{
+			background-color: #E6E6E6; 
+			margin-bottom: 3px; 
+			border-top: 1px solid #C8C8C8; 
+			border-bottom: 1px solid #C8C8C8; 
+			height: 25px; 
+			overflow: hidden;
+		}
+		.lower-menu > ul > li:first-child {width: 200px;}
+		.lower-menu-item 
+		{
+			display: block; 
+			height: 25px; 
+			width: 130px; 
+			text-align: center; 
+			line-height: 25px; 
+			border-right: 1px solid #C8C8C8; 
+			border-style: outset; 
+			float: left;
+		}
+		.lower-menu-item:hover {background-color: white;}
+		.contents 
+		{
+			margin-bottom: 3px; 
+			height: 25px; 
+			overflow: hidden;
+		}
+		.contents > ul > li:first-child {width: 200px;}
+		.contents-item 
+		{
+			display: block; 
+			height: 25px; 
+			width: 130px; 
+			text-align: center; 
+			line-height: 25px; 
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="main-wrapper">
+		<div class="left-wrapper">
+			<div class="upper-menu">
+				<ul>
+					<li class="upper-menu-item"><a href="#">프로젝트 추가</a></li>
+					<li class="upper-menu-item"><a href="#">수정</a></li>
+					<li class="upper-menu-item"><a href="#">삭제</a></li>
+					<li class="upper-menu-item"><a href="#">프로젝트 복사</a></li>
+					<li class="upper-menu-item"><a href="#">프로젝트 내보내기</a></li>
+				</ul>
+			</div>
+			<div class="lower-menu">
+				<ul>
+					<li class="lower-menu-item">프로젝트 명</li>
+					<li class="lower-menu-item">ID</li>
+					<li class="lower-menu-item">제목</li>
+					<li class="lower-menu-item">담당자</li>
+					<li class="lower-menu-item">작성자</li>
+					<li class="lower-menu-item">상태</li>
+					<li class="lower-menu-item">심각도</li>
+					<li class="lower-menu-item">우선순위</li>
+					<li class="lower-menu-item">재현빈도</li>
+					<li class="lower-menu-item">작성일</li>
+				</ul>
+			</div>
+			<?
+				for($i = 1; $i < 11; $i++)
+				{
+				?>
+				<div class="contents">
+					<ul>
+						<li class="contents-item"><a href="#">프로젝트<?=$i?></a></li>
+						<li class="contents-item">결함 수<?=$i?></li>
+						<li class="contents-item">완료 결함 수<?=$i?></li>
+						<li class="contents-item">참여자<?=$i?></li>
+						<li class="contents-item">시작일<?=$i?></li>
+						<li class="contents-item">종료일<?=$i?></li>
+						<li class="contents-item">프로젝트 작성자<?=$i?></li>
+					</ul>
+				</div>				
+				<?
+				}
+			?>
+		</div>
+	</div>
+</body>
+</html>
