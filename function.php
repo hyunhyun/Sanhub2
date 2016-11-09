@@ -1,7 +1,7 @@
 <?
 	$db = new PDO("mysql:dbname=db_ftm;host=localhost", "root", "apmsetup");
 
-	function show_contents()
+	function show_testcase_contents()
 	{
 		global $db;
 		$query = "select * from testcase";
@@ -144,8 +144,7 @@
 		}	
 	}
 
-
-	function show_contents_defect()
+	function show_defect_contents()
 	{
 		global $db;
 		$query = "select * from defect";
@@ -159,12 +158,11 @@
 				?>
 				<div class="contents">
 					<ul>
-						<li class="contents-item"><?=$row['project']?></a></li>
-						<li class="contents-item"><?=$row['defectname']?></li>
-						<li class="contents-item"><?=$row['content']?></li>
-						<li class="contents-item"><?=$row['severity']?></li>
-						<li class="contents-item"><?=$row['frequency']?></li>
-						<li class="contents-item"><?=$row['date']?></li>
+						<li class="contents-item"><input type="radio" name="title" value=<?=$row['title']?>></li>
+						<li class="contents-item"><a href=defectshow.html?title=<?=$row['title']?>><?=$row['title']?></a></li>
+						<li class="contents-item"><?=$row['id']?></li>
+						<li class="contents-item"><?=$row['tc']?></li>
+						<li class="contents-item"><?=$row['writer']?></li>
 					</ul>
 				</div>
 			<?
@@ -172,55 +170,46 @@
 		}
 	}
 
-	function show_defect($project)
+	function show_defect($title)
 	{
 		global $db;
-		$title = $db->quote($project);
+		$title = $db->quote($title);
 
-		$query = "select * from defect where project = $project";
+		$query = "select * from defect where title = $title";
 		$rows = $db->query($query);
-		$result[$db->rowCount($rows)][7];
-
-		$i = 0;
+		
 		if($rows->rowCount())
 		{
 			$row = $rows->fetch();
-			
-			$result[i] = array('project'=>$row['project'] ,'defectname' =>$row['defectname'],'content'=>$row['content'],
-				'severity'=>$row['severity'], 'frequency'=>$row['frequency'], 'testcaseid'=>$row['testcaseid'], 'status'=>$row['status']);
-
-			?>	<div class="right-show-defect">
-				결함 이름 : <?=$row['defectname']?> 
+			?>
+			<div class="right-wrapper">
+				결함 제목 : <?=$row['title']?> 
 				<br><br>
-				project : <?=$row['project']?>
+				아이디 : <?=$row['id']?>
 				<br><br>
-				content : <?=$row['content']?>
+				테스트케이스 : <?=$row['tc']?>
 				<br><br>
-				status : <?=$row['status']?>
+				담당자 : <?=$row['writer']?>
 				<br><br>
+				<a href="defect.html"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
 			</div>
-			<?
+		<?
 		}	
 	}
 
+	function insert_defect($POST)
+	{
+		global $db;
+		$title = $db->quote($POST['title']);
+		$id = $db->quote($POST['id']);
+		$tc = $db->quote($POST['tc']);
+		$writer = $db->quote($POST['writer']);
+				
+		$query = "insert into defect (title, id, tc, writer)";
+		$query.= "values ($title, $id, $tc, $writer)";
+		$result = $db->exec($query);
 
- function add_defect($_POST){
-
-	global $db;
-	
-		$project = $db->quote($_POST['project']);
-		$defectname = $db->quote($_POST['defectname']);
-		$content = $db->quote($_POST['content']);
-		$severity = $db->quote($_POST['severity']);
-		$frequency = $db->quote($_POST['frequency']);
-		$testcaseid = $db->quote($_POST['testcaseid']);
-		$status = $db->quote($_POST['status']);
-
-		$query = "insert into defect (project, defectname, content, severity, frequency, testcaseid, status)";
-		$query.="values ($project, $defectname, $content, $severity, $frequency, $testcaseid, $status)";
-		$check = $db->exec($query);
-
-		if(!$check)
+		if(!$result)
 		{
 			return false;
 		}
@@ -229,4 +218,6 @@
 			return true;
 		}
 	}
+
+	
 ?>
