@@ -1,3 +1,4 @@
+<? include("function.php");?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,7 @@
 		{
 			display: block; 
 			height: 25px; 
-			width: 130px; 
+			width: 150px; 
 			text-align: center; 
 			line-height: 25px; 
 			border-right: 1px solid #C8C8C8; 
@@ -117,24 +118,12 @@
 					<li class="lower-menu-item">프로젝트 작성자</li>
 				</ul>
 			</div>
-			<?
-				for($i = 1; $i < 11; $i++)
-				{
-				?>
+			
 				<div class="contents">
-					<ul>
-						<li class="contents-item"><a href="#">프로젝트<?=$i?></a></li>
-						<li class="contents-item">결함 수<?=$i?></li>
-						<li class="contents-item">완료 결함 수<?=$i?></li>
-						<li class="contents-item">참여자<?=$i?></li>
-						<li class="contents-item">시작일<?=$i?></li>
-						<li class="contents-item">종료일<?=$i?></li>
-						<li class="contents-item">프로젝트 작성자<?=$i?></li>
-					</ul>
+					<?=show_projects()?>
+						
 				</div>				
-				<?
-				}
-			?>
+				
 		</div>
 	</div>
 </body>

@@ -1,0 +1,163 @@
+<?
+	include("function.php");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+	<title>Defect</title>
+	<style>
+	* 
+		{
+			margin: 0; 
+			padding: 0;
+		}
+		a 
+		{
+			text-decoration: none; 
+			color: black;
+		}
+		li {list-style: none;}
+		.main-wrapper {overflow: hidden;}
+		.left-wrapper 
+		{
+			border: 5px solid #E6E6E6; 
+			border-style: ridge; 
+			float: left; 
+			position: absolute; 
+			width: 100%;
+		}
+		.upper-menu 
+		{
+			background-color: #E6E6E6; 
+			margin-bottom: 3px; 
+			border-top: 1px solid #C8C8C8; 
+			border-bottom: 1px solid #C8C8C8; 
+			border-left: 1px solid #C8C8C8; 
+			border-right: 1px solid #C8C8C8; 
+			height: 25px; 
+			overflow: hidden;
+		}
+		.upper-menu-item 
+		{
+			display: block; 
+			height: 25px; 
+			width: 150px; 
+			text-align: center; 
+			line-height: 25px; 
+			border-right: 1px solid #C8C8C8; 
+			border-style: outset; 
+			float: left;
+		}
+		.upper-menu-item:hover 
+		{
+			border-style: inset; 
+			padding-bottom: 10px; 
+			border-radius: 5px;
+		}
+		.lower-menu 
+		{
+			background-color: #E6E6E6; 
+			margin-bottom: 3px; 
+			border-top: 1px solid #C8C8C8; 
+			border-bottom: 1px solid #C8C8C8; 
+			height: 25px; 
+			overflow: hidden;
+		}
+		.lower-menu > ul > li:first-child {width: 200px;}
+		.lower-menu-item 
+		{
+			display: block; 
+			height: 25px; 
+			width: 150px; 
+			text-align: center; 
+			line-height: 25px; 
+			border-right: 1px solid #C8C8C8; 
+			border-style: outset; 
+			float: left;
+		}
+		.lower-menu-item:hover {background-color: white;}
+		.contents 
+		{
+			margin-bottom: 3px; 
+			height: 25px; 
+			overflow: hidden;
+		}
+		.contents > ul > li:first-child {width: 210px;}
+		.contents-item 
+		{
+			display: block; 
+			height: 25px; 
+			width: 150px; 
+			text-align: center; 
+			line-height: 25px; 
+			float: left;
+		}
+		#right-wrapper 
+		{
+			border: 5px solid #E6E6E6; 
+			border-style: ridge; 
+			padding: 25px 0 0 25px; 
+			background-color: white; 
+			float: left; 
+			position: absolute; 
+			width: 40%; 
+			height: 100%; 
+			right : 0; 
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="main-wrapper">
+		<div class="left-wrapper">
+			<div class="upper-menu">
+				<ul>
+					<li class="upper-menu-item"><a href="#" onclick="openright('right-wrapper')">추가</a></li>
+					<li class="upper-menu-item"><a href="#">수정</a></li>
+					<li class="upper-menu-item"><a href="#">삭제</a></li>
+					<li class="upper-menu-item"><a href="#">가져오기</a></li>
+					<li class="upper-menu-item"><a href="#">내보내기</a></li>
+				</ul>
+			</div>
+			<div class="lower-menu">
+				<ul>
+					<li class="lower-menu-item">프로젝트</li>
+					<li class="lower-menu-item">결함</li>
+					<li class="lower-menu-item">내용</li>
+					<li class="lower-menu-item">심각도</li>
+					<li class="lower-menu-item">TC</li>
+					<li class="lower-menu-item">재현빈도</li>
+					<li class="lower-menu-item">우선순위</li>
+				</ul>
+			</div>	
+					<?=show_contents_defect()?>
+		</div>
+		
+		<div id="right-wrapper">
+			<form action="defect_add.php" method="post" enctype="multipart/form-data">
+				결함 이름 (*) : <textarea name="defectname"></textarea><br><br>
+				프로젝트 : <textarea name="project"></textarea><br><br>
+				결함내용 : <textarea name="content"></textarea><br><br>
+				심각도 : <textarea name="severity"></textarea><br><br>
+				발생빈도 : <textarea name="frequency"></textarea><br><br>
+				발견한 TC : <textarea type="text" name="testcaseid"></textarea><br><br>
+				상태 : <textarea name="status"></textarea><br><br>
+				<!-- 첨부파일 : <input type="file" name="file"><br><br> -->
+				<input type="submit" value="저장" style="width : 70px; height : 25px">&nbsp;&nbsp;<a href="#" onclick="openright()"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
+			</form>
+		</div> 
+</div>
+</body>
+
+<script type="text/javascript">
+function openright(idMyDiv){
+     var objDiv = document.getElementById(idMyDiv);
+
+     if(objDiv.style.display=="block"){ objDiv.style.display = "none"; }
+     else{ objDiv.style.display = "block"; }
+
+}
+</script>
+</html>

@@ -9,7 +9,7 @@ a
 	color: black;
 }
 li {list-style: none;}
-.main-wrapper {overflow: hidden;}
+.main-wrapper {overflow: auto;}
 .left-wrapper 
 {
 	border: 5px solid #E6E6E6; 
@@ -56,6 +56,7 @@ overflow: hidden;
 	height: 25px; 
 	overflow: hidden;
 }
+.lower-menu > ul > li:nth-child(1) {width: 50px;}
 .lower-menu > ul > li:nth-child(2) {width: 300px;}
 .lower-menu-item 
 {
@@ -76,7 +77,8 @@ overflow: hidden;
 	height: 25px; 
 	overflow: hidden;
 }
-.contents > ul > li:nth-child(2) {width: 310px;}
+.contents > ul > li:nth-child(1) {width: 50px;}
+.contents > ul > li:nth-child(2) {width: 320px;}
 .contents-item 
 {
 	display: block; 
@@ -91,12 +93,12 @@ overflow: hidden;
 {
 	border: 5px solid #E6E6E6; 
 	border-style: ridge; 
-	padding: 30px 0 0 30px; 
+	padding: 0px 0 0 0px; 
 	background-color: white; 
 	float: left; 
 	position: absolute; 
 	width: 40%; 
-	height: 100%; 
+	height: 80%; 
 	right : 0; 
 	display: block;
 }		

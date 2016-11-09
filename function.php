@@ -1,9 +1,7 @@
 <?
 	$db = new PDO("mysql:dbname=db_ftm;host=localhost", "root", "apmsetup");
 
-	
-
-		function show_contents()
+	function show_contents()
 	{
 		global $db;
 		$query = "select * from testcase";
@@ -21,6 +19,8 @@
 						<li class="contents-item"><a href=testcaseshow.html?title=<?=$row['title']?>><?=$row['title']?></a></li>
 						<li class="contents-item"><?=$row['id']?></li>
 						<li class="contents-item"><?=$row['writer']?></li>
+						<li class="contents-item"><?=$row['due']?></li>
+						<li class="contents-item"><?=$row['result']?></li>
 						<li class="contents-item"><?=$row['date']?></li>
 					</ul>
 				</div>
@@ -42,13 +42,25 @@
 			$row = $rows->fetch();
 			?>
 			<div class="right-wrapper">
-				테스트케이스 이름 : <?=$row['title']?> 
+				테스트케이스 제목 : <?=$row['title']?> 
 				<br><br>
 				아이디 : <?=$row['id']?>
 				<br><br>
-				작성자 : <?=$row['writer']?>
+				담당자 : <?=$row['writer']?>
 				<br><br>
-				작성일 : <?=$row['date']?>
+				기&nbsp;&nbsp;&nbsp;한 : <?=$row['due']?>
+				<br><br>
+				실행결과 : <?=$row['result']?>
+				<br><br>
+				사전조건 : <textarea rows=5 cols=50><?=$row['antecedentcondition']?></textarea>
+				<br><br>
+				테스트데이터 : <textarea rows=5 cols=50><?=$row['testdata']?></textarea>
+				<br><br>
+				실행절차 : <textarea rows=5 cols=50><?=$row['executionprocedure']?></textarea>
+				<br><br>
+				예상결과 : <textarea rows=5 cols=50><?=$row['expectedresult']?></textarea>
+				<br><br>
+				비&nbsp;&nbsp;&nbsp;고 : <textarea rows=5 cols=50><?=$row['note']?></textarea>
 				<br><br>
 				<a href="testcase.html"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
 			</div>
@@ -62,10 +74,17 @@
 		$title = $db->quote($POST['title']);
 		$id = $db->quote($POST['id']);
 		$writer = $db->quote($POST['writer']);
+		$due = $db->quote($POST['due']);
+		$result = $db->quote($POST['result']);
 		$date = $db->quote($POST['date']);
+		$antecedentcondition = $db->quote($POST['antecedentcondition']);
+		$testdata = $db->quote($POST['testdata']);
+		$executionprocedure = $db->quote($POST['executionprocedure']);
+		$expectedresult = $db->quote($POST['expectedresult']);
+		$note = $db->quote($POST['note']);
 		
-		$query = "insert into testcase (title, id, writer, date)";
-		$query.= "values ($title, $id, $writer, $date)";
+		$query = "insert into testcase (title, id, writer, due, result, date, antecedentcondition, testdata, executionprocedure, expectedresult, note)";
+		$query.= "values ($title, $id, $writer, $due, $result, $date, $antecedentcondition, $testdata, $executionprocedure, $expectedresult, $note)";
 		$result = $db->exec($query);
 
 		if(!$result)
@@ -85,9 +104,16 @@
 		$title = $db->quote($POST['title']);
 		$id = $db->quote($POST['id']);
 		$writer = $db->quote($POST['writer']);
+		$due = $db->quote($POST['due']);
+		$result = $db->quote($POST['result']);
 		$date = $db->quote($POST['date']);
+		$antecedentcondition = $db->quote($POST['antecedentcondition']);
+		$testdata = $db->quote($POST['testdata']);
+		$executionprocedure = $db->quote($POST['executionprocedure']);
+		$expectedresult = $db->quote($POST['expectedresult']);
+		$note = $db->quote($POST['note']);
 
-		$query = "update testcase set title = $title, id = $id, writer = $writer, date = $date where title = $otitle";
+		$query = "update testcase set title = $title, id = $id, writer = $writer, due = $due, result = $result, date = $date, antecedentcondition = $antecedentcondition, testdata = $testdata, executionprocedure = $executionprocedure, expectedresult = $expectedresult, note = $note where title = $otitle";
 		$result = $db->exec($query);
 
 		if(!$result)
@@ -178,18 +204,19 @@
 	}
 
 
- function add_defect($POST){
+ function add_defect($_POST){
+
 	global $db;
 	
-		$project = $db->quote($POST['project']);
-		$defectname = $db->quote($POST['defectname']);
-		$content = $db->quote($POST['content']);
-		$severity = $db->quote($POST['severity']);
-		$frequency = $db->quote($POST['frequency']);
-		$testcaseid = $db->quote($POST['testcaseid']);
-		$status = $db->quote($POST['status']);
+		$project = $db->quote($_POST['project']);
+		$defectname = $db->quote($_POST['defectname']);
+		$content = $db->quote($_POST['content']);
+		$severity = $db->quote($_POST['severity']);
+		$frequency = $db->quote($_POST['frequency']);
+		$testcaseid = $db->quote($_POST['testcaseid']);
+		$status = $db->quote($_POST['status']);
 
-		$query ="insert into defect (project, defectname, content, severity, frequency, testcaseid, status)";
+		$query = "insert into defect (project, defectname, content, severity, frequency, testcaseid, status)";
 		$query.="values ($project, $defectname, $content, $severity, $frequency, $testcaseid, $status)";
 		$check = $db->exec($query);
 
@@ -200,6 +227,35 @@
 		else
 		{	
 			return true;
+		}
+	}
+
+
+	function show_projects()
+	{
+		global $db;
+		$query = "select * from project";
+
+		$rows = $db->query($query);
+		if($rows->rowCount())
+		{
+			for($i = 0; $i < $rows->rowCount(); $i++)
+			{
+				$row = $rows->fetch();
+				?>
+				<div class="contents">
+					<ul>
+						<li class="contents-item"><?=$row['projectname']?></li>
+						<li class="contents-item"><?=$row['defectnumber']?></a></li>
+						<li class="contents-item"><?=$row['finisheddefect']?></li>
+						<li class="contents-item"><?=$row['contributors']?></li>
+						<li class="contents-item"><?=$row['startdate']?></li>
+						<li class="contents-item"><?=$row['enddate']?></li>
+						<li class="contents-item"><?=$row['writer']?></li>
+					</ul>
+				</div>
+			<?
+			}
 		}
 	}
 ?>

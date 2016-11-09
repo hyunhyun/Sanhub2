@@ -159,11 +159,12 @@
  
 .backgroundheight { height: 100%; }
 
-      html, body  /* iframe %단위 height 적용 코드 */
+      html,body  /* iframe %단위 height 적용 코드 */
       {
         height: 100%;
         overflow: hidden;
       }
+
 
     </style>
   </head>
@@ -224,13 +225,13 @@
          </section>
       <!-- </div> -->
       <div class = "tab-content">
-         <iframe id= pfr src="projectdash1.html" scrolling="no" style="height:80%;  width: 98%;"></iframe>
+         <iframe id= pfr src="projectdash1.html" scrolling="yes" style="height:80%;  width: 100%;"></iframe>
         </div>
         <div class = "tab-content">
-         <iframe src="defectdash1.html" scrolling="no" style="height:80%;  width: 98%;"></iframe>
+         <iframe src="defectdash1.html" scrolling="yes" style="height:80%;  width: 100%;"></iframe>
         </div>
         <div class = "tab-content">
-        <iframe id = "main-iframe" src="defect1.html" scrolling="no" style="height:98%;  width: 98%;"></iframe>
+        <iframe id = "main-iframe" src="defect1.html" scrolling="yes" style="height:100%;  width: 100%;"></iframe>
         </div>
 
       </div>
@@ -276,7 +277,7 @@ function changeMaintab(idMyDiv){
    if(idMyDiv == "left-defect"){
       labels[2].style.display ="block";   
       labels[2].textContent = "Defect";
-      changeIframe('defect.html')}
+      changeIframe('defect1.html')}
    
    if(idMyDiv == "left-report"){
       labels[2].style.display ="block";   

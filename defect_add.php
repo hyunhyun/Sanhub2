@@ -1,14 +1,16 @@
 <?
 	include("function.php");
 
-	if(add_defect($_POST))
-	{
-		header("Location: defect.html");
+	// if(!is_null($_POST)){
+	$check =  add_defect($_POST);
+	
+	if($check){
+		header("Location: defect1.html");
 	}
-	else
-	{
-		header("Location: defect.html");	
-	}
+	else {?>
+		<p>insert 안됨<p> 
+	<?}
 
+	// }
 ?>
 
