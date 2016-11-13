@@ -9,7 +9,7 @@ a
 	color: black;
 }
 li {list-style: none;}
-.main-wrapper {overflow: auto;}
+.main-wrapper {overflow: hidden;}
 .left-wrapper 
 {
 	border: 5px solid #E6E6E6; 
@@ -56,14 +56,14 @@ overflow: hidden;
 	height: 25px; 
 	overflow: hidden;
 }
-.lower-menu > ul > li:nth-child(1) {width: 50px;}
+.lower-menu > ul > li:nth-child(1) {width: 40px;}
 .lower-menu > ul > li:nth-child(2) {width: 300px;}
 .lower-menu-item 
 {
 	display: block; 
 	font-size: 15px;
 	height: 25px; 
-	width: 150px; 
+	width: 100px; 
 	text-align: center; 
 	line-height: 25px; 
 	border-right: 1px solid #C8C8C8; 
@@ -77,14 +77,14 @@ overflow: hidden;
 	height: 25px; 
 	overflow: hidden;
 }
-.contents > ul > li:nth-child(1) {width: 50px;}
+.contents > ul > li:nth-child(1) {width: 40px;}
 .contents > ul > li:nth-child(2) {width: 320px;}
 .contents-item 
 {
 	display: block; 
 	font-size: 15px;
 	height: 25px; 
-	width: 150px; 
+	width: 100px; 
 	text-align: center; 
 	line-height: 25px; 
 	float: left;
@@ -93,12 +93,13 @@ overflow: hidden;
 {
 	border: 5px solid #E6E6E6; 
 	border-style: ridge; 
-	padding: 0px 0 0 0px; 
+	padding: 30px 0 0 30px; 
 	background-color: white; 
 	float: left; 
 	position: absolute; 
 	width: 40%; 
-	height: 80%; 
+	height: 85%; 
 	right : 0; 
 	display: block;
+	overflow: scroll;
 }		

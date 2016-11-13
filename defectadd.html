@@ -1,0 +1,52 @@
+<?
+	include("function.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Defect Add</title>
+	<link rel="stylesheet" type="text/css" href="ftm.css">
+</head>
+<body>
+	<div class="main-wrapper">
+		<div class="left-wrapper">
+			<form action="defectmod.html", method="post">
+				<div class="upper-menu">
+					<ul>
+						<li class="upper-menu-item"><a href="defectadd.html">결함 추가</a></li>
+						<li class="upper-menu-item"><a href="defectmod.html"><input type="submit" value="수정 / 삭제" style="border : 0; background-color : #E6E6E6; font-size : 16px; width : 150px;"></a></li>
+						<li class="upper-menu-item"><a href="#">내보내기</a></li>
+					</ul>
+				</div>
+				<div class="lower-menu">
+					<ul>
+						<li class="lower-menu-item">&nbsp;&nbsp;&nbsp;</li>
+						<li class="lower-menu-item">제  목</li>
+						<li class="lower-menu-item">I  D</li>
+						<li class="lower-menu-item">T  C</li>
+						<li class="lower-menu-item">담당자</li>
+						<li class="lower-menu-item">상  태</li>
+						<li class="lower-menu-item">심각도</li>
+						<li class="lower-menu-item">우선순위</li>
+						<li class="lower-menu-item">재현빈도</li>
+						<li class="lower-menu-item">날  짜</li>
+					</ul>
+				</div>
+				<?=show_defect_contents()?>	
+			</form>	
+		</div>
+		<div class="right-wrapper">
+			<form action="defectadd.php" method="post" enctype="multipart/form-data">
+				제   목 : <textarea name="title"></textarea><br><br>
+				아이디 : <textarea name="id"></textarea><br><br>
+				테스트케이스 : <textarea name="tc"></textarea><br><br>
+				담당자 : <textarea name="writer"></textarea><br><br>
+				<!--첨부파일 : <input type="file" name="file"><br><br>-->
+				<input type="submit" value="저장" style="width : 70px; height : 25px">&nbsp;&nbsp;
+				<a href="defect.html"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
