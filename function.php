@@ -157,6 +157,7 @@
 			{
 				$row = $rows->fetch();
 				?>
+				
 				<div class="contents">
 					<ul>
 						<li class="contents-item"><?=$row['project']?></a></li>
@@ -204,17 +205,17 @@
 	}
 
 
- function add_defect($_POST){
+ function add_defect($POST){
 
 	global $db;
 	
-		$project = $db->quote($_POST['project']);
-		$defectname = $db->quote($_POST['defectname']);
-		$content = $db->quote($_POST['content']);
-		$severity = $db->quote($_POST['severity']);
-		$frequency = $db->quote($_POST['frequency']);
-		$testcaseid = $db->quote($_POST['testcaseid']);
-		$status = $db->quote($_POST['status']);
+		$project = $db->quote($POST['project']);
+		$defectname = $db->quote($POST['defectname']);
+		$content = $db->quote($POST['content']);
+		$severity = $db->quote($POST['severity']);
+		$frequency = $db->quote($POST['frequency']);
+		$testcaseid = $db->quote($POST['testcaseid']);
+		$status = $db->quote($POST['status']);
 
 		$query = "insert into defect (project, defectname, content, severity, frequency, testcaseid, status)";
 		$query.="values ($project, $defectname, $content, $severity, $frequency, $testcaseid, $status)";
@@ -226,7 +227,6 @@
 		}
 		else
 		{	
-			return true;
 		}
 	}
 
@@ -245,17 +245,90 @@
 				?>
 				<div class="contents">
 					<ul>
-						<li class="contents-item"><?=$row['projectname']?></li>
-						<li class="contents-item"><?=$row['defectnumber']?></a></li>
-						<li class="contents-item"><?=$row['finisheddefect']?></li>
-						<li class="contents-item"><?=$row['contributors']?></li>
-						<li class="contents-item"><?=$row['startdate']?></li>
-						<li class="contents-item"><?=$row['enddate']?></li>
-						<li class="contents-item"><?=$row['writer']?></li>
+						<li class="contents-item-project"><?=$row['projectname']?></li>
+						<li class="contents-item-project"><?=$row['defectnumber']?></a></li>
+						<li class="contents-item-project"><?=$row['finisheddefect']?></li>
+						<li class="contents-item-project"><?=$row['contributors']?></li>
+						<li class="contents-item-project"><?=$row['startdate']?></li>
+						<li class="contents-item-project"><?=$row['enddate']?></li>
+						<li class="contents-item-project"><?=$row['writer']?></li>
 					</ul>
 				</div>
 			<?
 			}
 		}
 	}
+
+
+	function insert_project($POST)
+	{
+		global $db;
+		$projectname = $db->quote($POST['projectname']);
+		// $defectnumber = $db->quote($POST['defectnumber']);
+		// $finisheddefect = $db->quote($POST['finisheddefect']);
+		$contributors = $db->quote($POST['contributors']);
+		$startdate = $db->quote($POST['startdate']);
+		$enddate = $db->quote($POST['enddate']);
+		$writer = $db->quote($POST['writer']);
+	
+		
+		$query = "insert into project (projectname, defectnumber, finisheddefect, contributors, startdate, enddate, writer)";
+		$query.= "values ($projectname, 0, 0, $contributors, $startdate, $enddate, $writer)";
+		$result = $db->exec($query);
+
+		if(!$result)
+		{
+			return false;
+		}
+		else
+		{	
+			return true;
+		}
+	}
+
+	function modify_project($POST)
+	{
+		global $db;
+	    
+	   	$oprojectname = $db->quote($POST['oprojectname']);
+	    $projectname = $db->quote($POST['projectname']);
+		// $defectnumber = $db->quote($POST['defectnumber']);
+		// $finisheddefect = $db->quote($POST['finisheddefect']);
+		$contributors = $db->quote($POST['contributors']);
+		$startdate = $db->quote($POST['startdate']);
+		$enddate = $db->quote($POST['enddate']);
+		$writer = $db->quote($POST['writer']);
+
+		$query = "update project set projectname = $projectname, contributors = $contributors, startdate = $startdate, ";
+		$query .= "enddate = $enddate, writer = $writer where projectname = $oprojectname";
+		$result = $db->exec($query);
+
+		if(!$result)
+		{
+			return false;
+		}
+		else
+		{	
+			return ture;
+		}	
+	}
+
+	function delete_project($POST)
+	{
+		global $db;
+		$projectname = $db->quote($POST['projectname']);
+
+		$query = "delete from project where projectname = $projectname";
+		$result = $db->query($query);
+		
+		if(!$result)
+		{
+			return false;
+		}
+		else
+		{	
+			return ture;
+		}	
+	}
+
 ?>

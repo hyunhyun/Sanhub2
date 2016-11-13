@@ -3,9 +3,11 @@
 <html>
 <head>
  <meta charset="utf-8">
-	<title>Defect</title>
+	<title>projectdash</title>
 	<style>
-		* {margin: 0; 
+		* 
+		{
+			margin: 0; 
 			padding: 0;
 		}
 		a 
@@ -14,11 +16,7 @@
 			color: black;
 		}
 		li {list-style: none;}
-		.main-wrapper 
-		{
-			width: 600px;
-			overflow: hidden;
-		}
+		.main-wrapper {overflow: hidden;}
 		.left-wrapper 
 		{
 			border: 5px solid #E6E6E6; 
@@ -83,8 +81,8 @@
 			height: 25px; 
 			overflow: hidden;
 		}
-		.contents > ul > li:first-child {width: 200px;}
-		.contents-item 
+		.contents > ul > li:first-child {width: 210px;}
+		.contents-item-project 
 		{
 			display: block; 
 			height: 25px; 
@@ -93,6 +91,21 @@
 			line-height: 25px; 
 			float: left;
 		}
+		
+		#right-wrapper-add, #right-wrapper-modify, #right-wrapper-delete
+		{
+			border: 5px solid #E6E6E6; 
+			border-style: ridge; 
+			padding: 25px 0 0 25px; 
+			background-color: white; 
+			float: right; 
+			position: relative; 
+			width: 40%; 
+			height: 100%; 
+			right : 0; 
+			display: none;
+		}
+
 	</style>
 </head>
 <body>
@@ -100,9 +113,9 @@
 		<div class="left-wrapper">
 			<div class="upper-menu">
 				<ul>
-					<li class="upper-menu-item"><a href="#">프로젝트 추가</a></li>
-					<li class="upper-menu-item"><a href="#">수정</a></li>
-					<li class="upper-menu-item"><a href="#">삭제</a></li>
+					<li class="upper-menu-item"><a href="#" onclick="openright('right-wrapper-add')">프로젝트 추가</a></li>
+					<li class="upper-menu-item"><a href="#" onclick="openright('right-wrapper-modify')">수정</a></li>
+					<li class="upper-menu-item"><a href="#" onclick="openright('right-wrapper-delete')">삭제</a></li>
 					<li class="upper-menu-item"><a href="#">프로젝트 복사</a></li>
 					<li class="upper-menu-item"><a href="#">프로젝트 내보내기</a></li>
 				</ul>
@@ -119,12 +132,69 @@
 				</ul>
 			</div>
 			
-				<div class="contents">
-					<?=show_projects()?>
-						
-				</div>				
+					<?=show_projects()?>			
+							
+		</div>
+		<div id="right-wrapper-add">
+			<form action="projectadd.php" method="post" enctype="multipart/form-data">
+				projectname: <textarea name="projectname"></textarea><br><br>
+				contributors : <textarea name="contributors"></textarea><br><br>
+				startdate : <input name="startdate" type="date"><br><br>
+				enddate : <input name="enddate" type="date"><br><br>
+				writer : <input name="writer" type="text"></textarea><br><br>
 				
+				<input type="submit" value="저장" style="width : 70px; height : 25px">&nbsp;&nbsp;
+				<a href="#" onclick="openright('right-wrapper-add')"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
+			</form>
+		</div>
+
+		<div id="right-wrapper-modify">
+			<form action="projectmodify.php" method="post" enctype="multipart/form-data">
+				수정할 프로젝트 이름: <textarea name="oprojectname"></textarea><br><br>
+				project name: <textarea name="projectname"></textarea><br><br>
+				contributors : <textarea name="contributors"></textarea><br><br>
+				startdate : <input name="startdate" type="date"><br><br>
+				enddate : <input name="enddate" type="date"><br><br>
+				writer : <input name="writer" type="text"></textarea><br><br>
+				
+				<input type="submit" value="저장" style="width : 70px; height : 25px">&nbsp;&nbsp;
+				<a href="#" onclick="openright('right-wrapper-modify')"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
+			</form>
+		</div>
+
+		<div id="right-wrapper-delete">
+			<form action="projectdelete.php" method="post" enctype="multipart/form-data">
+				삭제할 프로젝트 이름: <textarea name="projectname"></textarea><br><br>
+				
+				<input type="submit" value="저장" style="width : 70px; height : 25px">&nbsp;&nbsp;
+				<a href="#" onclick="openright('right-wrapper-delete')"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
+			</form>
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+function openright(idMyDiv){
+     var objDiv = document.getElementById(idMyDiv);
+
+     if(idMyDiv == "right-wrapper-add"){
+     	document.getElementById("right-wrapper-modify").style.display = "none";
+     	document.getElementById("right-wrapper-delete").style.display = "none";
+     }
+
+      if(idMyDiv == "right-wrapper-modify"){
+     	document.getElementById("right-wrapper-add").style.display = "none";
+     	document.getElementById("right-wrapper-delete").style.display = "none";
+     }
+
+      if(idMyDiv == "right-wrapper-delete"){
+     	document.getElementById("right-wrapper-add").style.display = "none";
+     	document.getElementById("right-wrapper-modify").style.display = "none";
+     }
+
+
+     if(objDiv.style.display=="block"){ objDiv.style.display = "none"; }
+     else{ objDiv.style.display = "block"; }
+}
+</script>
 </html>
