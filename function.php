@@ -219,5 +219,43 @@
 		}
 	}
 
-	
+	function modify_defect($POST)
+	{
+		global $db;
+		$otitle = $db->quote($POST['otitle']);
+		$title = $db->quote($POST['title']);
+		$id = $db->quote($POST['id']);
+		$tc = $db->quote($POST['tc']);
+		$writer = $db->quote($POST['writer']);
+				
+		$query = "update defect set title = $title, id = $id, tc = $tc, writer = $writer where title = $otitle";
+		$result = $db->exec($query);
+
+		if(!$result)
+		{
+			return false;
+		}
+		else
+		{	
+			return ture;
+		}	
+	}
+
+	function delete_defect($title)
+	{
+		global $db;
+		$title = $db->quote($title);
+
+		$query = "delete from defect where title = $title";
+		$result = $db->query($query);
+		
+		if(!$result)
+		{
+			return false;
+		}
+		else
+		{	
+			return ture;
+		}	
+	}
 ?>
