@@ -1,4 +1,7 @@
 <!-- <!doctype html> -->
+<?
+include("function.php");
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -182,29 +185,12 @@
       <div id="jb-sidebar-left">
          <div id="sidebar-left-inout"><img id="leftmenu-img" src="bars.png" onclick="openleftMenu()" /></div>
         <span>Project</span>
-        <ul class="sidebar-left-project-list">
-          <li class="project"><a href="#" onclick="openlist('left-inside-projects')">핸드폰 테스트</a></li>
-          <ul id = "left-inside-projects" style="display: none;">
-          <!-- <ul id="left-testcase"> -->
-          <li a href="#" onclick="openlist('left-testcase')">testcase</a></li>
-          <ul id="left-testcase" style="display: block;">
-          <li>a test</li>
-          <li>b test</li>
-          </ul>
-          <li a href="#" onclick="openlist('left-defect')">Defect</a></li>
-          <ul id="left-defect">
-          <li>defect1</li>
-          </ul>
-           <li a href="#" onclick="openlist('left-report')">Report</a></li>
-          <ul id="left-report">
-          <li>report1</li>
-          </ul> </ul>
-          </li>
-         
-          <li class="project">Ipsum</li>
-          <li class="project">Dolor</li>
-        </ul>
-
+        
+         <ul class="sidebar-left-project-list">
+        
+        <?=layout_list() ?>
+      </ul>
+    
 
       </div>
 

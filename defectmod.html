@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Defect Add</title>
+	<title>Test Case Modify</title>
 	<link rel="stylesheet" type="text/css" href="ftm.css">
 </head>
 <body>
@@ -16,6 +16,7 @@
 					<ul>
 						<li class="upper-menu-item"><a href="defectadd.html">결함 추가</a></li>
 						<li class="upper-menu-item"><a href="defectmod.html"><input type="submit" value="수정 / 삭제" style="border : 0; background-color : #E6E6E6; font-size : 16px; width : 150px;"></a></li>
+						<li class="upper-menu-item"><a href="#">가져오기</a></li>
 						<li class="upper-menu-item"><a href="#">내보내기</a></li>
 					</ul>
 				</div>
@@ -37,14 +38,16 @@
 			</form>	
 		</div>
 		<div class="right-wrapper">
-			<form action="defectadd.php" method="post" enctype="multipart/form-data">
-				제   목 : <textarea name="title"></textarea><br><br>
-				아이디 : <input type="text" name="id" value="tc-"></textarea><br><br>
+			<form action="defectmod.php" method="post" enctype="multipart/form-data">
+				제   목 : <textarea name="title"><?=$_POST['title']?></textarea><br><br>
+				아이디 : <textarea name="id"></textarea><br><br>
 				테스트케이스 : <textarea name="tc"></textarea><br><br>
 				담당자 : <textarea name="writer"></textarea><br><br>
 				<!--첨부파일 : <input type="file" name="file"><br><br>-->
-				<input type="submit" value="저장" style="width : 70px; height : 25px">&nbsp;&nbsp;
+				<input type="submit" value="수정" style="width : 70px; height : 25px">&nbsp;&nbsp;
+				<a href=defectdel.php?title=<?=$_POST['title']?>><input type="button" value="삭제" style="width : 70px; height : 25px"></a>&nbsp;&nbsp;
 				<a href="defect.html"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
+				<input type="hidden" name="otitle" value=<?=$_POST['title']?>>
 			</form>
 		</div>
 	</div>

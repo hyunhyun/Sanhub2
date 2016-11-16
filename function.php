@@ -1,6 +1,39 @@
 <?
 	$db = new PDO("mysql:dbname=db_ftm;host=localhost", "root", "apmsetup");
 
+	function layout_list(){
+		global $db;
+		$query = "select * from project";
+		$rows = $db->query($query);
+		if($rows->rowCount())
+		{
+			for($i = 0; $i < $rows->rowCount(); $i++)
+			{
+				$row = $rows->fetch();
+				?>
+		
+		 <li class="project"><a href="#" onclick="openlist('left-inside-projects')"><?=$row['projectname']?></a></li>
+          <ul id = "left-inside-projects" style="display: none;">
+          <li a href="#" onclick="openlist('left-testcase')">testcase</a></li>
+          <ul id="left-testcase" style="display: block;">
+          <li>a test</li>
+          <li>b test</li>
+          </ul>
+          <li a href="#" onclick="openlist('left-defect')">Defect</a></li>
+          <ul id="left-defect">
+          <li>defect1</li>
+          </ul>
+           <li a href="#" onclick="openlist('left-report')">Report</a></li>
+          <ul id="left-report">
+          <li>report1</li>
+          </ul> </ul>
+          </li>
+          
+  <?    
+}
+	}
+}
+
 	function show_testcase_contents()
 	{
 		global $db;
@@ -134,6 +167,7 @@
 		}	
 	}
 	
+	
 	function show_defect_contents()
 	{
 		global $db;
@@ -203,8 +237,42 @@
 			return true;
 		}
 	}
-	
-
+	function modify_defect($POST)
+	{
+		global $db;
+		$otitle = $db->quote($POST['otitle']);
+		$title = $db->quote($POST['title']);
+		$id = $db->quote($POST['id']);
+		$tc = $db->quote($POST['tc']);
+		$writer = $db->quote($POST['writer']);
+				
+		$query = "update defect set title = $title, id = $id, tc = $tc, writer = $writer where title = $otitle";
+		$result = $db->exec($query);
+		if(!$result)
+		{
+			return false;
+		}
+		else
+		{	
+			return ture;
+		}	
+	}
+	function delete_defect($title)
+	{
+		global $db;
+		$title = $db->quote($title);
+		$query = "delete from defect where title = $title";
+		$result = $db->query($query);
+		
+		if(!$result)
+		{
+			return false;
+		}
+		else
+		{	
+			return ture;
+		}	
+	}
 
 	function show_projects()
 	{
@@ -245,8 +313,9 @@
 		$startdate = $db->quote($POST['startdate']);
 		$enddate = $db->quote($POST['enddate']);
 		$writer = $db->quote($POST['writer']);
-	
-		
+
+
+
 		$query = "insert into project (projectname, defectnumber, finisheddefect, contributors, startdate, enddate, writer)";
 		$query.= "values ($projectname, 0, 0, $contributors, $startdate, $enddate, $writer)";
 		$result = $db->exec($query);
