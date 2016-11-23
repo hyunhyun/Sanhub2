@@ -38,11 +38,40 @@
 			</form>	
 		</div>
 		<div class="right-wrapper">
+			<div class="right-title">
+				결함 수정 / 삭제<br><br>
+			</div><br>
 			<form action="defectmod.php" method="post" enctype="multipart/form-data">
 				제   목 : <textarea name="title"><?=$_POST['title']?></textarea><br><br>
-				아이디 : <textarea name="id"></textarea><br><br>
-				테스트케이스 : <textarea name="tc"></textarea><br><br>
+				I  D : <textarea name="id"></textarea><br><br>
+				T  C : <textarea name="tc"></textarea><br><br>
 				담당자 : <textarea name="writer"></textarea><br><br>
+				상  태 : <select name="state">
+						<option value="신규">신규</option>
+						<option value="할당">할당</option>
+						<option value="수정완료">수정완료</option>
+						<option value="재오픈">재오픈</option>
+					</select><br><br>
+				심각도 : <select name="severity">
+						<option value="치명적">치명적</option>
+						<option value="매우심각">매우심각</option>
+						<option value="심각">심각</option>
+						<option value="보통">보통</option>
+					</select><br><br>
+
+				우선순위 : <select name="priority">
+						<option value="매우높음">매우높음</option>
+						<option value="높음">높음</option>
+						<option value="보통">보통</option>
+						<option value="낮음">낮음</option>
+					</select><br><br>
+				재현빈도 : <select name="frequency">
+						<option value="항상">항상</option>
+						<option value="보통">보통</option>
+						<option value="가끔">가끔</option>
+						<option value="거의">거의</option>
+					</select><br><br>
+				날  짜 : <input name="date" type="date"><br><br>
 				<!--첨부파일 : <input type="file" name="file"><br><br>-->
 				<input type="submit" value="수정" style="width : 70px; height : 25px">&nbsp;&nbsp;
 				<a href=defectdel.php?title=<?=$_POST['title']?>><input type="button" value="삭제" style="width : 70px; height : 25px"></a>&nbsp;&nbsp;

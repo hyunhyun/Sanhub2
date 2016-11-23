@@ -10,6 +10,7 @@
 			for($i = 0; $i < $rows->rowCount(); $i++)
 			{
 				$row = $rows->fetch();
+				$name = $row['projectname'];
 				$p = "left-inside-projects-";
 				$p .= $i;
 				
@@ -23,18 +24,17 @@
 				$r .= $i;
 				?>
 		
-		 <li class="project"><a href="#" onclick="openlist('<?=$p?>','1')"><?=$row['projectname']?></a></li>
+		 <li class="project"><a href="#" onclick="openlist('<?=$p?>','0','0')"><?=$row['projectname']?></a></li>
           <ul id = '<?=$p?>' style="display: none;">
-          <li a href="#" onclick="openlist('<?=$t?>')">testcase</a></li>
+          <li a href="#" onclick="openlist('<?=$t?>','1','<?=$name?>')">testcase</a></li>
           <ul id='<?=$t?>' style="display: block;">
           <li>a test</li>
-          <li>b test</li>
           </ul>
-          <li a href="#" onclick="openlist('<?=$d?>','2')">Defect</a></li>
+          <li a href="#" onclick="openlist('<?=$d?>','2','<?=$name?>')">Defect</a></li>
           <ul id='<?=$d?>'>
           <li>defect1</li>
           </ul>
-           <li a href="#" onclick="openlist('<?=$r?>','3')">Report</a></li>
+           <li a href="#" onclick="openlist('<?=$r?>','3','<?=$name?>')">Report</a></li>
           <ul id='<?=$r?>'>
           <li>report1</li>
           </ul> 
@@ -178,8 +178,6 @@
 			return ture;
 		}	
 	}
-	
-	
 	function show_defect_contents()
 	{
 		global $db;
@@ -198,6 +196,11 @@
 						<li class="contents-item"><?=$row['id']?></li>
 						<li class="contents-item"><?=$row['tc']?></li>
 						<li class="contents-item"><?=$row['writer']?></li>
+						<li class="contents-item"><?=$row['state']?></li>
+						<li class="contents-item"><?=$row['severity']?></li>
+						<li class="contents-item"><?=$row['priority']?></li>
+						<li class="contents-item"><?=$row['frequency']?></li>
+						<li class="contents-item"><?=$row['date']?></li>
 					</ul>
 				</div>
 			<?
@@ -218,11 +221,21 @@
 			<div class="right-wrapper">
 				결함 제목 : <?=$row['title']?> 
 				<br><br>
-				아이디 : <?=$row['id']?>
+				I  D : <?=$row['id']?>
 				<br><br>
-				테스트케이스 : <?=$row['tc']?>
+				T  C : <?=$row['tc']?>
 				<br><br>
 				담당자 : <?=$row['writer']?>
+				<br><br>
+				상 태 : <?=$row['state']?>
+				<br><br>
+				심각도 : <?=$row['severity']?>
+				<br><br>
+				우선순위 : <?=$row['priority']?>
+				<br><br>
+				재생빈도 : <?=$row['frequency']?>
+				<br><br>
+				날 짜 : <?=$row['date']?>
 				<br><br>
 				<a href="defect.html"><input type="button" value="닫기" style="width : 70px; height : 25px"></a>
 			</div>
@@ -236,9 +249,14 @@
 		$id = $db->quote($POST['id']);
 		$tc = $db->quote($POST['tc']);
 		$writer = $db->quote($POST['writer']);
+		$state = $db->quote($POST['state']);
+		$severity = $db->quote($POST['severity']);
+		$priority = $db->quote($POST['priority']);
+		$frequency = $db->quote($POST['frequency']);
+		$date = $db->quote($POST['date']);
 				
-		$query = "insert into defect (title, id, tc, writer)";
-		$query.= "values ($title, $id, $tc, $writer)";
+		$query = "insert into defect (title, id, tc, writer, state, severity, priority, frequency, date)";
+		$query.= "values ($title, $id, $tc, $writer, $state, $severity, $priority, $frequency, $date)";
 		$result = $db->exec($query);
 		if(!$result)
 		{
@@ -257,8 +275,13 @@
 		$id = $db->quote($POST['id']);
 		$tc = $db->quote($POST['tc']);
 		$writer = $db->quote($POST['writer']);
+		$state = $db->quote($POST['state']);
+		$severity = $db->quote($POST['severity']);
+		$priority = $db->quote($POST['priority']);
+		$frequency = $db->quote($POST['frequency']);
+		$date = $db->quote($POST['date']);
 				
-		$query = "update defect set title = $title, id = $id, tc = $tc, writer = $writer where title = $otitle";
+		$query = "update defect set title = $title, id = $id, tc = $tc, writer = $writer, state = $state, severity = $severity, priority = $priority, frequency = $frequency, date = $date where title = $otitle";
 		$result = $db->exec($query);
 		if(!$result)
 		{
@@ -285,12 +308,10 @@
 			return ture;
 		}	
 	}
-
 	function show_projects()
 	{
 		global $db;
 		$query = "select * from project";
-
 		$rows = $db->query($query);
 		if($rows->rowCount())
 		{
@@ -313,8 +334,6 @@
 			}
 		}
 	}
-
-
 	function insert_project($POST)
 	{
 		global $db;
@@ -325,13 +344,11 @@
 		$startdate = $db->quote($POST['startdate']);
 		$enddate = $db->quote($POST['enddate']);
 		$writer = $db->quote($POST['writer']);
-
-
-
+	
+		
 		$query = "insert into project (projectname, defectnumber, finisheddefect, contributors, startdate, enddate, writer)";
 		$query.= "values ($projectname, 0, 0, $contributors, $startdate, $enddate, $writer)";
 		$result = $db->exec($query);
-
 		if(!$result)
 		{
 			return false;
@@ -341,7 +358,6 @@
 			return true;
 		}
 	}
-
 	function modify_project($POST)
 	{
 		global $db;
@@ -354,11 +370,9 @@
 		$startdate = $db->quote($POST['startdate']);
 		$enddate = $db->quote($POST['enddate']);
 		$writer = $db->quote($POST['writer']);
-
 		$query = "update project set projectname = $projectname, contributors = $contributors, startdate = $startdate, ";
 		$query .= "enddate = $enddate, writer = $writer where projectname = $oprojectname";
 		$result = $db->exec($query);
-
 		if(!$result)
 		{
 			return false;
@@ -368,12 +382,10 @@
 			return ture;
 		}	
 	}
-
 	function delete_project($POST)
 	{
 		global $db;
 		$projectname = $db->quote($POST['projectname']);
-
 		$query = "delete from project where projectname = $projectname";
 		$result = $db->query($query);
 		

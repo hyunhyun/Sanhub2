@@ -217,19 +217,42 @@ include("function.php");
 
       </div>
      
+ 
+
   </body>
 
 
         <!-- left list 누르면 열리게하는 함수-->
 <script type="text/javascript">
-function openlist(idMyDiv, num){
+
+function openlist(idMyDiv, num, name){
      var objDiv = document.getElementById(idMyDiv);
 
      if(objDiv.style.display=="block"){ objDiv.style.display = "none"; }
      else{ objDiv.style.display = "block"; }
 
-    if(num=="1"|| num=="2"|| num=="3") 
+    if(num=="1"|| num=="2"|| num=="3") {
      changeMaintab(num);
+     sendpost(name);
+    }
+
+}
+
+function sendpost(name){
+  
+  // window.open("projectname.php","_blank", option);  
+
+  var form = document.createElement("form");
+  form.setAttribute("method", "post");
+  // form.setAttribute("target", "_blank");
+  form.setAttribute("action", "projectname.php");
+
+  var result = document.createElement("input");
+  result.setAttribute("type","hidden");
+  result.setAttribute("name","processingResult");
+  result.setAttribute("value",name);
+  form.appendChild(result);
+  form.submit();
 }
 
 function openleftMenu() {
