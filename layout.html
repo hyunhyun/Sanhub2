@@ -91,6 +91,9 @@ include("function.php");
         background-color: white;
       }
 
+      ul{
+        list-style: circle;
+      }
 
       ul.sidebar-left-project-list{
        list-style-image: url('file.jpg');
@@ -98,15 +101,7 @@ include("function.php");
         margin-left: 30px;
         }
 
-      ul#left-inside-projects{
-         list-style: circle;
-      }
-
-      ul#left-testcase, ul#left-defect, ul#left-report{
-         list-style: circle;
-      }
-
-
+     
       a{text-decoration:none;} 
       a:visited {text-decoration: none; color: #333333;}
       a:active {text-decoration: none; color: #333333;}
@@ -114,6 +109,7 @@ include("function.php");
          text-decoration: underline; color: red;
          text-decoration: none; color: #333333;
          }
+
       #jb-content {
          vertical-align: top;
          position: relative;
@@ -186,11 +182,10 @@ include("function.php");
          <div id="sidebar-left-inout"><img id="leftmenu-img" src="bars.png" onclick="openleftMenu()" /></div>
         <span>Project</span>
         
-         <ul class="sidebar-left-project-list">
-        
+        <ul class="sidebar-left-project-list">
+
         <?=layout_list() ?>
-      </ul>
-    
+    </ul>
 
       </div>
 
@@ -227,13 +222,14 @@ include("function.php");
 
         <!-- left list 누르면 열리게하는 함수-->
 <script type="text/javascript">
-function openlist(idMyDiv){
+function openlist(idMyDiv, num){
      var objDiv = document.getElementById(idMyDiv);
 
      if(objDiv.style.display=="block"){ objDiv.style.display = "none"; }
      else{ objDiv.style.display = "block"; }
 
-     changeMaintab(idMyDiv);
+    if(num=="1"|| num=="2"|| num=="3") 
+     changeMaintab(num);
 }
 
 function openleftMenu() {
@@ -255,17 +251,17 @@ function openleftMenu() {
 function changeMaintab(idMyDiv){
    var labels = document.getElementsByTagName('LABEL');
 
-   if(idMyDiv == "left-testcase"){
+   if(idMyDiv == "1"){
       labels[2].style.display ="block";      
       labels[2].textContent = "TestCase";
        changeIframe('testcaseshow.html'); }
 
-   if(idMyDiv == "left-defect"){
+   if(idMyDiv == "2"){
       labels[2].style.display ="block";   
       labels[2].textContent = "Defect";
       changeIframe('defect.html')}
    
-   if(idMyDiv == "left-report"){
+   if(idMyDiv == "3"){
       labels[2].style.display ="block";   
       labels[2].textContent = "Report";}
 

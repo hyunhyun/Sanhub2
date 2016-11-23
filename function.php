@@ -10,27 +10,39 @@
 			for($i = 0; $i < $rows->rowCount(); $i++)
 			{
 				$row = $rows->fetch();
+				$p = "left-inside-projects-";
+				$p .= $i;
+				
+				$t = "left-testcase-";
+				$t .= $i;
+
+				$d = "left-defect-";
+				$d .= $i;
+
+				$r = "left-report-";
+				$r .= $i;
 				?>
 		
-		 <li class="project"><a href="#" onclick="openlist('left-inside-projects')"><?=$row['projectname']?></a></li>
-          <ul id = "left-inside-projects" style="display: none;">
-          <li a href="#" onclick="openlist('left-testcase')">testcase</a></li>
-          <ul id="left-testcase" style="display: block;">
+		 <li class="project"><a href="#" onclick="openlist('<?=$p?>','1')"><?=$row['projectname']?></a></li>
+          <ul id = '<?=$p?>' style="display: none;">
+          <li a href="#" onclick="openlist('<?=$t?>')">testcase</a></li>
+          <ul id='<?=$t?>' style="display: block;">
           <li>a test</li>
           <li>b test</li>
           </ul>
-          <li a href="#" onclick="openlist('left-defect')">Defect</a></li>
-          <ul id="left-defect">
+          <li a href="#" onclick="openlist('<?=$d?>','2')">Defect</a></li>
+          <ul id='<?=$d?>'>
           <li>defect1</li>
           </ul>
-           <li a href="#" onclick="openlist('left-report')">Report</a></li>
-          <ul id="left-report">
+           <li a href="#" onclick="openlist('<?=$r?>','3')">Report</a></li>
+          <ul id='<?=$r?>'>
           <li>report1</li>
-          </ul> </ul>
+          </ul> 
+          </ul>
           </li>
-          
   <?    
-}
+		}
+
 	}
 }
 
